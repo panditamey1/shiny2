@@ -20,7 +20,7 @@ def get_top_5_following_numbers(number, top_n=5):
 st.title("Top")
 
 # User input
-number = st.number_input("Enter:", min_value=0, max_value=36, step=1)
+number = st.number_input("Enter:", min_value=0, max_value=36, step=1, key='number')
 top_n_number = st.number_input("Enter number of top numbers:", min_value=1, max_value=10, step=1, value=5)
 # Display top 5 numbers following the given number
 if st.button("Show Top 5 Numbers"):
@@ -31,9 +31,9 @@ if st.button("Show Top 5 Numbers"):
     st.table(df)
 
 
-number1 = st.number_input("Enter number to add:", min_value=0, max_value=36, step=1)
+number1 = st.number_input("Enter number to add:", min_value=0, max_value=36, step=1,key='number1')
     
-number2add = st.number_input("Enter number to add:", min_value=0, max_value=36, step=1)
+number2add = st.number_input("Enter number to add:", min_value=0, max_value=36, step=1,key='number2add')
 
 # add number to follow_counts
 if st.button("Add number to follow_counts"):
