@@ -30,13 +30,16 @@ if st.button("Show Top 5 Numbers"):
     st.table(df.transpose())
     st.table(df)
 
+
+number1 = st.number_input("Enter number to add:", min_value=0, max_value=36, step=1)
+    
+number2add = st.number_input("Enter number to add:", min_value=0, max_value=36, step=1)
+
 # add number to follow_counts
 if st.button("Add number to follow_counts"):
-    number = st.number_input("Enter number to add:", min_value=0, max_value=36, step=1)
-    number = str(number)
-    number2add = st.number_input("Enter number to add:", min_value=0, max_value=36, step=1)
+    number1 = str(number1)
     number2add = str(number2add)
-    follow_counts[number].append(number2add)
-    st.write(f"Number {number} added to follow_counts")
+    follow_counts[number1].append(number2add)
+    st.write(f"Number {number1} added to follow_counts")
     with open('follow_counts.json', 'w') as f:
         json.dump(follow_counts, f)
