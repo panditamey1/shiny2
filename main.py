@@ -9,6 +9,7 @@ print("streamlit version: ", st.__version__)
 # Replace this with your actual dictionary populated from CSV files
 with open('follow_counts.json') as f:
     follow_counts = json.load(f)
+layout_list = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26]
 
 # Function to get top numbers following the given number
 def get_top_following_numbers(number, top_n=5):
@@ -25,7 +26,14 @@ def generate_speech(text):
     tts.write_to_fp(audio_file)
     audio_file.seek(0)
     return audio_file
-
+def sort_by_layout(lst, layout_list):
+    # Create a dictionary mapping each number in layout_list to its index
+    index_map = {num: idx for idx, num in enumerate(layout_list)}
+    
+    # Sort the input list based on the index in layout_list
+    sorted_lst = sorted(lst, key=lambda x: index_map[x])
+    
+    return sorted_lst
 # Streamlit app
 st.title("Top")
 saved_results = {}
@@ -41,8 +49,10 @@ if st.button("Show Top Numbers"):
         st.write(f"Top {top_n_number} numbers following {number}:")
         st.table(df.transpose())
 
+        # show sorted layout
+        sorted_layout = sort_by_layout([num for num, _ in top_numbers], layout_list)
         # Generate and play speech
-        numbers_text = ', '.join([str(num) for num, _ in top_numbers])
+        numbers_text = ', '.join([str(num) for num in sorted_layout])
 
         speech_text = f" {numbers_text}."
 
