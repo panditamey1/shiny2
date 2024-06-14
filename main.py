@@ -51,6 +51,7 @@ if st.button("Show Top Numbers"):
 
         # show sorted layout
         sorted_layout = sort_by_layout([num for num, _ in top_numbers], layout_list)
+        st.write(f"Sorted layout: {sorted_layout}")
         # Generate and play speech
         numbers_text = ', '.join([str(num) for num in sorted_layout])
 
